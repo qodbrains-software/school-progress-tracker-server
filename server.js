@@ -1,18 +1,17 @@
-const express = require('express');
-const bodyParser = require("body-parser")
+import express from 'express';
 const server = express();
-const port = 9000;
+const PORT = 9000;
+import {database} from './data/database.mock.js';
+ 
+server.get("/get-data", (req,res) => {
+    res.json(database);
+})
 
-// server.use(express.json);
-server.use(bodyParser.json());
-    
 
-    const callbackfunction = (err) => {
-        if(err){
-        console.log(`server error`);
-    }
-    console.log(`this server is listening to port ${port}`);
-    }
-    
-    server.listen(port, callbackfunction)
+server.listen(PORT, (err) => {
+    if(err){
+    console.log(`server error`);
+}
+console.log(`this server is listening to port ${PORT}`);
+})
     
